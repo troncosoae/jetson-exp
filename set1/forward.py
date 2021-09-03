@@ -55,6 +55,8 @@ if __name__ == '__main__':
     print('GroundTruth: ', ' '.join(
         '%5s' % classes[labels[j]] for j in range(4)))
 
+    images, labels = images.to(device),labels.to(device)
+
     # running forward
     print('running forward...')
     outputs = net(images)
