@@ -21,6 +21,7 @@ def imshow(img):
 if __name__ == '__main__':
     WEIGHTS_PATH = sys.argv[1]
     DEVICE = sys.argv[2]
+    SHOW_IMAGES = True if sys.argv[3] else False
     print(f'forward.py {WEIGHTS_PATH} {DEVICE}')
 
     # verifying cuda available
