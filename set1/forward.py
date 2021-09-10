@@ -74,3 +74,6 @@ if __name__ == '__main__':
 
     print('Predicted: ', ' '.join('%5s' % classes[predicted[j]]
                                   for j in range(4)))
+
+    print('running 2ndforward...')
+    outputs = net(images)
