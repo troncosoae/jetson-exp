@@ -77,3 +77,4 @@ if __name__ == '__main__':
 
     print('running 2ndforward...')
     outputs = net(images)
+    print("--- %s seconds ---" % (time.time() - start_time))
