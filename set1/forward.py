@@ -21,7 +21,7 @@ def imshow(img):
 if __name__ == '__main__':
     WEIGHTS_PATH = sys.argv[1]
     DEVICE = sys.argv[2]
-    SHOW_IMAGES = True if sys.argv[3] else False
+    SHOW_IMAGES = True if sys.argv[3] == 'True' else False
     print(f'forward.py {WEIGHTS_PATH} {DEVICE}')
 
     # verifying cuda available
@@ -59,10 +59,11 @@ if __name__ == '__main__':
     dataiter = iter(testloader)
     images, labels = dataiter.next()
 
-    print('printing test images...')
-    imshow(torchvision.utils.make_grid(images))
-    print('GroundTruth: ', ' '.join(
-        '%5s' % classes[labels[j]] for j in range(4)))
+    if SHOW_IMAGES:
+        print('printing test images...')
+        imshow(torchvision.utils.make_grid(images))
+        print('GroundTruth: ', ' '.join(
+            '%5s' % classes[labels[j]] for j in range(4)))
 
     images, labels = images.to(device), labels.to(device)
 
