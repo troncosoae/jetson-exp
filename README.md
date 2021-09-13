@@ -4,6 +4,17 @@
 
 Info general sobre uso de Jetson Nano y experimentos realizados.
 
+## Comandos útiles en monitoreo de trabajo en CPU & GPU
+
+top
+
+ps -aux
+
+tegrastats
+
+Para ejecutar en background:
+tegrastats --interval <int> --logfile <out_file> &
+
 ### Links de utilidad
 
 get-started-jetson-nano-devkit:
