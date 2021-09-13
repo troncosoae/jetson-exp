@@ -96,6 +96,8 @@ if __name__ == '__main__':
     if SHOW_IMAGES:
         plt.plot(forward_counts, forward_times)
         plt.show()
+        plt.hist(forward_times, bins=20)
+        plt.show()
 
 
 
