@@ -80,14 +80,23 @@ if __name__ == '__main__':
     images, labels = images.to(device), labels.to(device)
 
     # run forwards
+    forward_counts = []
+    forward_times = []
     for count in range(FORWARD_LOOPS):
         print(f'Running forward # {count}...')
         start_time = time.time()
         outputs = net(images)
-        print("--- %s seconds ---" % (time.time() - start_time))
+        t = time.time() - start_time
+        print(f"--- {t} seconds ---")
+        forward_counts.append(count)
+        forward_times.append(t)
         _, predicted = torch.max(outputs, 1)
         print('Predicted: ', ' '.join('%5s' % classes[predicted[j]]
                                       for j in range(4)))
+    if SHOW_IMAGES:
+        plt.plot(forward_counts, forward_times)
+        plt.show()
+
 
 
     # print('running forward...')
