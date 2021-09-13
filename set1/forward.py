@@ -21,8 +21,20 @@ def imshow(img):
 if __name__ == '__main__':
     WEIGHTS_PATH = sys.argv[1]
     DEVICE = sys.argv[2]
-    SHOW_IMAGES = True if sys.argv[3] == 'True' else False
-    print(f'forward.py {WEIGHTS_PATH} {DEVICE}')
+    try:
+        FORWARD_LOOPS = int(sys.argv[3])
+    except IndexError:
+        FORWARD_LOOPS = 1
+    except ValueError:
+        FORWARD_LOOPS = 1
+    try:
+        temp = sys.argv[4]
+        if temp == 'True':
+            SHOW_IMAGES = True
+        else:
+            SHOW_IMAGES = False
+    except IndexError:
+        SHOW_IMAGES = False
 
     # verifying cuda available
     print('checking cuda availability...')
@@ -67,17 +79,27 @@ if __name__ == '__main__':
 
     images, labels = images.to(device), labels.to(device)
 
-    # running forward
-    print('running forward...')
-    start_time = time.time()
-    outputs = net(images)
-    print("--- %s seconds ---" % (time.time() - start_time))
-    _, predicted = torch.max(outputs, 1)
+    # run forwards
+    for count in range(FORWARD_LOOPS):
+        print(f'Running forward # {count}...')
+        start_time = time.time()
+        outputs = net(images)
+        print("--- %s seconds ---" % (time.time() - start_time))
+        _, predicted = torch.max(outputs, 1)
+        print('Predicted: ', ' '.join('%5s' % classes[predicted[j]]
+                                      for j in range(4)))
 
-    print('Predicted: ', ' '.join('%5s' % classes[predicted[j]]
-                                  for j in range(4)))
 
-    print('running 2ndforward...')
-    start_time = time.time()
-    outputs = net(images)
-    print("--- %s seconds ---" % (time.time() - start_time))
+    # print('running forward...')
+    # start_time = time.time()
+    # outputs = net(images)
+    # print("--- %s seconds ---" % (time.time() - start_time))
+    # _, predicted = torch.max(outputs, 1)
+
+    # print('Predicted: ', ' '.join('%5s' % classes[predicted[j]]
+    #                               for j in range(4)))
+
+    # print('running 2ndforward...')
+    # start_time = time.time()
+    # outputs = net(images)
+    # print("--- %s seconds ---" % (time.time() - start_time))
