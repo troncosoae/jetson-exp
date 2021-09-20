@@ -17,6 +17,8 @@ tegrastats --interval <int> --logfile <out_file> &
 
 ### Links de utilidad
 
+#### General
+
 get-started-jetson-nano-devkit:
 <https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro>
 
@@ -46,3 +48,13 @@ instalacion tensorflow:
 
 utilizacion camara web:
 <https://developer.nvidia.com/embedded/learn/tutorials/first-picture-csi-usb-camera>
+
+#### Sobre la CPU
+
+<https://developer.arm.com/documentation/ddi0488/h/programmers-model/armv8-a-architecture-concepts?lang=en>
+
+#### Memoria
+
+<https://docs.nvidia.com/cuda/cuda-for-tegra-appnote/index.html#memory-management>
+
+<https://developer.ridgerun.com/wiki/index.php?title=NVIDIA_CUDA_Memory_Management>

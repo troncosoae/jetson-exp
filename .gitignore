@@ -132,3 +132,4 @@ dmypy.json
 # Definidos post #
 ##################
 set1/data/*
+set2/data/*
