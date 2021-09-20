@@ -24,6 +24,7 @@ if __name__ == "__main__":
         metrics=['accuracy'])
     net.summary()
     print(net)
+    net.save_weights('./checkpoints/my_checkpoint')
 
     batch_size = 32
 
@@ -65,6 +66,8 @@ if __name__ == "__main__":
         train_ds,
         validation_data=val_ds,
         epochs=epochs)
+
+    net.save_weights('./checkpoints/my_checkpoint')
 
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']
