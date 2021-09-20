@@ -6,11 +6,20 @@ import tensorflow as tf
 from tensorflow import keras
 import pathlib
 import time
+import sys
 
 from Net.Net import Net
 
 
 if __name__ == "__main__":
+
+    DEVICE = 'gpu'
+    try:
+        DEVICE = sys.argv[1]
+    except IndexError:
+        pass
+    if DEVICE == 'cpu':
+        os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
     img_height = 180
     img_width = 180
