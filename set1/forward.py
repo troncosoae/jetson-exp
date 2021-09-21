@@ -7,6 +7,7 @@ from Net.Net import Net
 import matplotlib.pyplot as plt
 import numpy as np
 import time
+import os
 
 # functions to show an image
 
@@ -35,6 +36,27 @@ if __name__ == '__main__':
             SHOW_IMAGES = False
     except IndexError:
         SHOW_IMAGES = False
+    try:
+        sys.getwindowsversion()
+    except AttributeError:
+        isWindows = False
+    else:
+        isWindows = True
+    if not isWindows:
+        PREV_NICE = os.nice(0)
+        print(f'prev nice: {PREV_NICE}')
+    # try:
+    #     NICE = int(sys.argv[5])
+    # except IndexError:
+    #     NICE = 0
+    # except ValueError:
+    #     NICE = 0
+
+    # if NICE != 0:
+    #     nice_value = os.nice(0)
+    #     print(f'prev nice value: {nice_value}')
+
+
 
     # verifying cuda available
     print('checking cuda availability...')
@@ -98,19 +120,3 @@ if __name__ == '__main__':
         plt.show()
         plt.hist(forward_times[2:], bins=50)
         plt.show()
-
-
-
-    # print('running forward...')
-    # start_time = time.time()
-    # outputs = net(images)
-    # print("--- %s seconds ---" % (time.time() - start_time))
-    # _, predicted = torch.max(outputs, 1)
-
-    # print('Predicted: ', ' '.join('%5s' % classes[predicted[j]]
-    #                               for j in range(4)))
-
-    # print('running 2ndforward...')
-    # start_time = time.time()
-    # outputs = net(images)
-    # print("--- %s seconds ---" % (time.time() - start_time))

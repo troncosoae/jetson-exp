@@ -59,3 +59,4 @@ if __name__ == "__main__":
         t = time.time() - start_time
         print(f"--- {t} seconds ---")
         print(estimate)
+        print(element[1])
