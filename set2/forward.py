@@ -58,3 +58,4 @@ if __name__ == "__main__":
         estimate = net.predict(element)
         t = time.time() - start_time
         print(f"--- {t} seconds ---")
+        print(estimate)
