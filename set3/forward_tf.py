@@ -75,7 +75,7 @@ if __name__ == "__main__":
         # print(e0.shape, e1.shape)
 
         input_batch = e0.astype(np.float32)
-        output = np.empty([batch_size, 1000], dtype=target_dtype)
+        output = np.empty([batch_size, num_classes], dtype=target_dtype)
 
         d_input = cuda.mem_alloc(1 * input_batch.nbytes)
         d_output = cuda.mem_alloc(1 * output.nbytes)
@@ -92,6 +92,7 @@ if __name__ == "__main__":
         print(f"--- {t} seconds ---")
 
         print(trt_predictions)
+        print(trt_predictions[0])
         # indices = (-trt_predictions[0]).argsort()
         # print("Class | Probability (out of 1)")
         # list(zip(indices, trt_predictions[0][indices]))
