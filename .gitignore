@@ -136,3 +136,4 @@ set1/data/*
 set2/data/*
 set2/checkpoints/*
 set2/tmp_saved_models/*
+set2/tmp_saved_models.zip

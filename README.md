@@ -48,6 +48,9 @@ instalacion pytorch:
 instalacion tensorflow:
 <https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform/index.html>
 
+instalacion tensorrt:
+<https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#installing-pip>
+
 utilizacion camara web:
 <https://developer.nvidia.com/embedded/learn/tutorials/first-picture-csi-usb-camera>
 
