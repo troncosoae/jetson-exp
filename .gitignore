@@ -139,3 +139,4 @@ set2/tmp_saved_models/*
 set2/tmp_saved_models.zip
 
 set3/onnx_models/*
+set3/data/*
