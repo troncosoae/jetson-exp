@@ -45,12 +45,15 @@ if __name__ == '__main__':
     if not isWindows:
         PREV_NICE = os.nice(0)
         print(f'prev nice: {PREV_NICE}')
-    # try:
-    #     NICE = int(sys.argv[5])
-    # except IndexError:
-    #     NICE = 0
-    # except ValueError:
-    #     NICE = 0
+        NICE = PREV_NICE
+        try:
+            NICE = int(sys.argv[5])
+        except IndexError:
+            NICE = 0
+        except ValueError:
+            NICE = 0
+        os.nice(NICE)
+        print(f'new nice: {os.nice(NICE)}')
 
     # if NICE != 0:
     #     nice_value = os.nice(0)
