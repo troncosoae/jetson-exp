@@ -65,14 +65,14 @@ if __name__ == "__main__":
     target_dtype = np.float32
 
     for element in val_ds:
-        print(type(element))
-        print(len(element))
-        print(type(element[0]))
-        print(type(element[1]))
+        # print(type(element))
+        # print(len(element))
+        # print(type(element[0]))
+        # print(type(element[1]))
         e0 = np.array(element[0])
         e1 = np.array(element[1])
-        print(type(e0), type(e1))
-        print(e0.shape, e1.shape)
+        # print(type(e0), type(e1))
+        # print(e0.shape, e1.shape)
 
         input_batch = e0.astype(np.float32)
         output = np.empty([batch_size, 1000], dtype=target_dtype)
@@ -85,5 +85,12 @@ if __name__ == "__main__":
         stream = cuda.Stream()
 
         print("Warming up...")
+        start_time = time.time()
         trt_predictions = predict(input_batch).astype(np.float32)
+        t = time.time() - start_time
         print("Done warming up!")
+        print(f"--- {t} seconds ---")
+
+        indices = (-trt_predictions[0]).argsort()
+        print("Class | Probability (out of 1)")
+        list(zip(indices, trt_predictions[0][indices]))
