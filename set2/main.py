@@ -68,6 +68,7 @@ if __name__ == "__main__":
         epochs=epochs)
 
     net.save_weights('./checkpoints/my_checkpoint')
+    net.save('tmp_saved_models/version1')
 
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']

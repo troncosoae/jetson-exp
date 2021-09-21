@@ -8,6 +8,8 @@ Info general sobre uso de Jetson Nano y experimentos realizados.
 
 top
 
+jtop
+
 ps -aux
 
 tegrastats
