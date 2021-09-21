@@ -51,6 +51,12 @@ instalacion tensorflow:
 instalacion tensorrt:
 <https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#installing-pip>
 
+insalacion pycuda:
+<https://medium.com/dropout-analytics/pycuda-on-jetson-nano-7990decab299>
+
+uso nvcc:
+<https://medium.com/dropout-analytics/pycuda-on-jetson-nano-7990decab299>
+
 utilizacion camara web:
 <https://developer.nvidia.com/embedded/learn/tutorials/first-picture-csi-usb-camera>
 
