@@ -91,6 +91,7 @@ if __name__ == "__main__":
         print("Done warming up!")
         print(f"--- {t} seconds ---")
 
-        indices = (-trt_predictions[0]).argsort()
-        print("Class | Probability (out of 1)")
-        list(zip(indices, trt_predictions[0][indices]))
+        print(trt_predictions)
+        # indices = (-trt_predictions[0]).argsort()
+        # print("Class | Probability (out of 1)")
+        # list(zip(indices, trt_predictions[0][indices]))
