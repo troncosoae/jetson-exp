@@ -131,12 +131,13 @@ dmypy.json
 ###################
 # Definidos post #
 ##################
-set1/data/*
+datasets/*
+exp/set1/data/*
 
-set2/data/*
-set2/checkpoints/*
-set2/tmp_saved_models/*
-set2/tmp_saved_models.zip
+exp/set2/data/*
+exp/set2/checkpoints/*
+exp/set2/tmp_saved_models/*
+exp/set2/tmp_saved_models.zip
 
-set3/onnx_models/*
-set3/data/*
+exp/set3/onnx_models/*
+exp/set3/data/*
