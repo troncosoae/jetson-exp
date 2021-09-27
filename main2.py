@@ -31,25 +31,11 @@ if __name__ == '__main__':
 
     print(X.shape, Y.shape)
 
-    batches = split_into_batches(X, Y, 3)
-
-    torch_batches = [(suit4pytorch(X, Y)) for X, Y in batches]
-
-    X_torch = torch_batches[0][0]
-    Y_torch = torch_batches[0][1]
+    X_torch, Y_torch = suit4pytorch(X, Y)
 
     net = Net()
-    # # net.load_weights(saved_weights_file)
+    net.load_weights(saved_weights_file)
 
-    preds = net(X_torch)
-    print(preds)
+    acc, n = net.evaluate_accuracy(X_torch, Y_torch)
 
-    net.train(torch_batches, 4, verbose=True)
-
-    preds = net(X_torch)
-
-    preds = preds.detach().numpy()
-    print(preds)
-    print(np.argmax(preds, axis=1), Y_torch)
-
-    net.save_weights(saved_weights_file)
+    print(f'acc: {acc*100:.2f}%, N: {n}')

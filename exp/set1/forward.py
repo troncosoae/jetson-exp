@@ -110,6 +110,9 @@ if __name__ == '__main__':
     for count in range(FORWARD_LOOPS):
         print(f'Running forward # {count}...')
         start_time = time.time()
+        print(images)
+        print(type(images))
+        print(images.shape)
         outputs = net(images)
         t = time.time() - start_time
         print(f"--- {t} seconds ---")
