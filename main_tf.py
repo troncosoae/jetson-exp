@@ -1,4 +1,5 @@
 import numpy as np
+import tensorflow as tf
 
 from data_worker import combine_batches, split_into_batches, unpickle, \
     unpack_data, display_img
@@ -32,4 +33,17 @@ if __name__ == '__main__':
 
     batches = split_into_batches(X, Y, 3)
 
-    torch_batches = [(suit4tf(X, Y)) for X, Y in batches]
+    tf_batches = [(suit4tf(X, Y)) for X, Y in batches]
+
+    X_tf = tf_batches[0][0]
+    Y_tf = tf_batches[0][1]
+
+    print(X_tf, Y_tf)
+
+    net = Net()
+    net.compile(
+        optimizer='adam',
+        loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+        metrics=['accuracy'])
+    net.fit(X_tf, Y_tf)
+    net.summary()
