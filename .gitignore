@@ -131,6 +131,7 @@ dmypy.json
 ###################
 # Definidos post #
 ##################
+*data*
 datasets/*
 saved_nets/*
 

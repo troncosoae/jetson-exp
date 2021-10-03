@@ -54,6 +54,7 @@ if __name__ == "__main__":
         batch_size=batch_size)
 
     for element in val_ds:
+        print(element, type(element))
         start_time = time.time()
         estimate = net.predict(element)
         t = time.time() - start_time
