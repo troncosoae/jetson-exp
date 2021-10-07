@@ -15,7 +15,7 @@ batches_names = [
 if __name__ == '__main__':
     print('running main')
 
-    saved_weights_file = 'saved_nets/saved_torch/version1.pth'
+    saved_weights_file = 'saved_nets/saved_tf/version1.pth'
 
     data_batches = [
         unpickle(f'datasets/cifar-10-batches-py/{batch_name}') for batch_name
@@ -41,9 +41,9 @@ if __name__ == '__main__':
     print(X_tf, Y_tf)
 
     net = Net()
-    net.compile(
-        optimizer='adam',
-        loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-        metrics=['accuracy'])
-    net.fit(X_tf, Y_tf)
-    net.summary()
+    net.train([(X, Y)], 1, verbose=False, batch_size=None)
+
+    net.save_weights(saved_weights_file)
+
+    preds = net.predict(X_tf)
+    print('preds', preds)
