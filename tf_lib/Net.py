@@ -7,23 +7,24 @@ from tensorflow.python.keras.layers.core import Dense
 class Net(Sequential):
     def __init__(self) -> None:
         self.num_classes = 10
-        self.img_height = 32
-        self.img_width = 32
-        self.channels = 3
+        # self.img_height = 32
+        # self.img_width = 32
+        # self.channels = 3
 
-        model_list = [
+        self.model_list = [
             layers.Conv2D(
-                filters=6, kernel_size=5, padding=0, activation='relu'),
+                filters=6, kernel_size=5, padding='same', activation='relu'),
             layers.MaxPooling2D(pool_size=(2, 2), strides=2),
             layers.Conv2D(
-                filters=16, kernel_size=5, padding=0, activation='relu'),
+                filters=16, kernel_size=5, padding='same', activation='relu'),
+            layers.MaxPooling2D(pool_size=(2, 2), strides=2),
             layers.Flatten(),
             layers.Dense(120, activation='relu'),
             layers.Dense(84, activation='relu'),
             layers.Dense(self.num_classes)
         ]
 
-        super().__init__(model_list)
+        super().__init__(self.model_list)
 
     def train(self, dataset_batches, epochs, verbose=False, **kwargs):
         optimizer = kwargs.get('optimizer', 'adam')
