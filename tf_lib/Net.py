@@ -1,6 +1,7 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras import layers
 import tensorflow as tf
+from tensorflow.python.keras.layers.core import Dense
 
 
 class Net(Sequential):
@@ -11,14 +12,14 @@ class Net(Sequential):
         self.channels = 3
 
         model_list = [
-            layers.Conv2D(16, 3, padding='same', activation='relu'),
-            layers.MaxPooling2D(),
-            layers.Conv2D(32, 3, padding='same', activation='relu'),
-            layers.MaxPooling2D(),
-            layers.Conv2D(64, 3, padding='same', activation='relu'),
-            layers.MaxPooling2D(),
+            layers.Conv2D(
+                filters=6, kernel_size=5, padding=0, activation='relu'),
+            layers.MaxPooling2D(pool_size=(2, 2), strides=2),
+            layers.Conv2D(
+                filters=16, kernel_size=5, padding=0, activation='relu'),
             layers.Flatten(),
-            layers.Dense(128, activation='relu'),
+            layers.Dense(120, activation='relu'),
+            layers.Dense(84, activation='relu'),
             layers.Dense(self.num_classes)
         ]
 

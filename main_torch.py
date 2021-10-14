@@ -44,7 +44,7 @@ if __name__ == '__main__':
     preds = net(X_torch)
     print(preds)
 
-    net.train(torch_batches, 4, verbose=True)
+    net.train(torch_batches, 1, verbose=True)
 
     preds = net(X_torch)
 
