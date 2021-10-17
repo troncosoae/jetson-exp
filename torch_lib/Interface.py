@@ -45,3 +45,15 @@ class Interface:
 
     def predict_net(self, X, *args, **kwargs):
         return self.net(X)
+
+    def eval_acc_net(self, X, Y):
+        Y_pred = self.net(X).detach().numpy()
+        Y_pred = np.argmax(Y_pred, axis=1)
+
+        N = Y.shape[0]
+        correct = 0
+        for i in range(N):
+            if Y_pred[i] == Y[i]:
+                correct += 1
+
+        return correct/N, N

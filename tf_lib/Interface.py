@@ -1,4 +1,7 @@
 import tensorflow as tf
+import tf2onnx.convert
+import onnx
+import numpy as np
 
 
 class Interface:
@@ -28,3 +31,19 @@ class Interface:
 
     def predict_net(self, X, *args, **kwargs):
         return self.net.predict(X, *args, **kwargs)
+
+    def eval_acc_net(self, X, Y):
+        Y_pred = self.net.predict(X)
+        Y_pred = np.argmax(Y_pred, axis=1)
+
+        N = Y.shape[0]
+        correct = 0
+        for i in range(N):
+            if Y_pred[i] == Y[i]:
+                correct += 1
+
+        return correct/N, N
+
+    def convert2onnx(self, filepath):
+        onnx_model, _ = tf2onnx.convert.from_keras(self.net)
+        onnx.save(onnx_model, filepath)

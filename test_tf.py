@@ -1,4 +1,5 @@
 import numpy as np
+from numpy.lib.npyio import save
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras import layers
@@ -47,8 +48,7 @@ if __name__ == '__main__':
 
     net = MediumNet
     net_interface = Interface(net)
-    net_interface.train_net([(X_tf, Y_tf)], 1, verbose=False, batch_size=None)
-    net_interface.save_weights(saved_weights_file)
+    net_interface.load_weights(saved_weights_file)
 
     preds = net_interface.predict_net(X_tf)
     # preds = preds.numpy()

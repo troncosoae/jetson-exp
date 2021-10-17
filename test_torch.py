@@ -1,10 +1,13 @@
 import numpy as np
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
 from data_worker import combine_batches, split_into_batches, unpickle, \
     unpack_data, display_img
-from torch_lib.Net import Net
 from torch_lib.data_worker import suit4pytorch
+from torch_lib.Nets import MediumNet
+from torch_lib.Interface import Interface
 
 
 batches_names = [
@@ -33,9 +36,10 @@ if __name__ == '__main__':
 
     X_torch, Y_torch = suit4pytorch(X, Y)
 
-    net = Net()
-    net.load_weights(saved_weights_file)
+    net = MediumNet()
+    net_interface = Interface(net)
+    net_interface.load_weights(saved_weights_file)
 
-    acc, n = net.evaluate_accuracy(X_torch, Y_torch)
+    acc, n = net_interface.eval_acc_net(X_torch, Y_torch)
 
     print(f'acc: {acc*100:.2f}%, N: {n}')
