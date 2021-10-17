@@ -1,9 +1,12 @@
 import numpy as np
 import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras import layers
 
 from data_worker import combine_batches, split_into_batches, unpickle, \
     unpack_data, display_img
 from tf_lib.Net import Net
+from tf_lib.Interface import Interface
 from tf_lib.data_worker import suit4tf
 
 
@@ -40,10 +43,31 @@ if __name__ == '__main__':
 
     print(X_tf, Y_tf)
 
-    net = Net()
-    net.train([(X, Y)], 1, verbose=False, batch_size=None)
+    # net = Net()
+    # net.train([(X, Y)], 1, verbose=False, batch_size=None)
 
-    net.save_weights(saved_weights_file)
+    # net.save_weights(saved_weights_file)
 
-    preds = net.predict(X_tf)
-    print('preds', preds)
+    # preds = net.predict(X_tf)
+    # print('preds', preds)
+
+    net = Sequential([
+        layers.Conv2D(
+            filters=6, kernel_size=5, padding='same', activation='relu'),
+        layers.MaxPooling2D(pool_size=(2, 2), strides=2),
+        layers.Conv2D(
+            filters=16, kernel_size=5, padding='same', activation='relu'),
+        layers.MaxPooling2D(pool_size=(2, 2), strides=2),
+        layers.Flatten(),
+        layers.Dense(120, activation='relu'),
+        layers.Dense(84, activation='relu'),
+        layers.Dense(10)
+    ])
+    net_interface = Interface(net)
+    net_interface.train_net([(X, Y)], 1, verbose=False, batch_size=None)
+    net_interface.save_weights(saved_weights_file)
+
+    preds = net_interface.predict_net(X_tf)
+    preds = preds.numpy()
+    print(preds)
+    print(np.argmax(preds, axis=1), Y_tf)
