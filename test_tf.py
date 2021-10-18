@@ -1,8 +1,4 @@
 import numpy as np
-from numpy.lib.npyio import save
-import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras import layers
 
 from data_worker import combine_batches, split_into_batches, unpickle, \
     unpack_data, display_img

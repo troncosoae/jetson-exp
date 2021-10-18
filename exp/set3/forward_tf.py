@@ -22,7 +22,7 @@ def predict(batch): # result gets copied into output
     cuda.memcpy_dtoh_async(output, d_output, stream)
     # Syncronize threads
     stream.synchronize()
-    
+
     return output
 
 
