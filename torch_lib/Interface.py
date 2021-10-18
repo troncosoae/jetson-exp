@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
+import torch.onnx
 import numpy as np
 
 
@@ -57,3 +58,6 @@ class Interface:
                 correct += 1
 
         return correct/N, N
+
+    def convert2onnx(self, filepath, dummy_input):
+        torch.onnx.export(self.net, dummy_input, filepath, verbose=False)
