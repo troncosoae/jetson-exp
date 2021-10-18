@@ -1,5 +1,4 @@
 import tensorflow as tf
-import numpy as np
 
 
 def suit4tf(X, Y):

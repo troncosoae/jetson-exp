@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     X_tf, Y_tf = suit4tf(X, Y)
 
-    # print(X.shape, Y.shape)
+    print(X.shape, Y.shape)
 
     # batches = split_into_batches(X, Y, 3)
 

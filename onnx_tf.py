@@ -54,7 +54,7 @@ if __name__ == '__main__':
     print(preds)
     print(np.argmax(preds, axis=1), Y_tf)
 
-    net_interface.convert2onnx('saved_nets/saved_onnx/onnx_tf_v1.pth')
+    net_interface.convert2onnx('saved_nets/saved_onnx/onnx_tf_v1.onnx')
 
     # acc, n = net_interface.eval_acc_net(X_tf, Y_tf)
 
