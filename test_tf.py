@@ -15,7 +15,7 @@ batches_names = [
 if __name__ == '__main__':
     print('running main')
 
-    saved_weights_file = 'saved_nets/saved_tf/version1.pth'
+    saved_weights_file = 'saved_nets/saved_tf/medium_v1.pth'
 
     data_batches = [
         unpickle(f'datasets/cifar-10-batches-py/{batch_name}') for batch_name
