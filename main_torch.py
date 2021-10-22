@@ -3,8 +3,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from data_worker import combine_batches, split_into_batches, unpickle, \
-    unpack_data, display_img
+from data_worker.data_worker import combine_batches, split_into_batches, \
+    unpickle, unpack_data, display_img
 from torch_lib.Interface import Interface
 from torch_lib.Nets import MediumNet
 from torch_lib.data_worker import suit4pytorch

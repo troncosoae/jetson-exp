@@ -8,7 +8,7 @@ Info general sobre uso de Jetson Nano y experimentos realizados.
 
 top
 
-jtop
+jtop <https://github.com/rbonghi/jetson_stats>
 
 ps -aux
 
@@ -46,7 +46,7 @@ instalacion pytorch:
 <https://forums.developer.nvidia.com/t/pytorch-for-jetson-version-1-9-0-now-available/72048>
 
 instalacion tensorflow:
-<https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform/index.html>
+<https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform/index.html> --> note: using version 2.5.0
 
 instalacion tensorrt:
 <https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#installing-pip>
@@ -69,3 +69,43 @@ utilizacion camara web:
 <https://docs.nvidia.com/cuda/cuda-for-tegra-appnote/index.html#memory-management>
 
 <https://developer.ridgerun.com/wiki/index.php?title=NVIDIA_CUDA_Memory_Management>
+
+##### Agregar SWAP
+
+Ver estado actual
+
+```console
+$ free -m
+Mem:  ...
+Swap: ...
+```
+
+Crear archivo swap
+
+```console
+$ sudo systemctl disable nvzramconfig.service
+$ sudo fallocate -l 4GB /mnt/4GB.swap
+$ sudo chmod 600 /mnt/4GB.swap
+$ sudo mkswap /mnt/4GB.swap
+Setting up ...
+```
+
+Editar archivo
+
+```console
+$ sudo vi /etc/fstab
+# /etc/fstab
+...
+/dev/root...
+/mnt/4GB.swap swap swap defaults 0 0  # This line must be added
+```
+
+Reiniciar y revisar.
+
+```console
+$ sudo reboo
+...
+$ free -m
+Mem:  ...
+Swap: ...
+```
