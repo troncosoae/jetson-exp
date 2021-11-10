@@ -17,6 +17,19 @@ tegrastats
 Para ejecutar en background:
 tegrastats --interval <int> --logfile <out_file> &
 
+## Cambios en modo de operacion (TX2)
+
+Ver este vinculo:
+
+<https://developer.ridgerun.com/wiki/index.php?title=NVIDIA_Jetson_TX2_NVP_model>
+
+Comando en consola:
+
+```console
+$ sudo nvpmodel -m [modo]
+...
+```
+
 ### Links de utilidad
 
 #### General
@@ -103,7 +116,7 @@ $ sudo vi /etc/fstab
 Reiniciar y revisar.
 
 ```console
-$ sudo reboo
+$ sudo reboot
 ...
 $ free -m
 Mem:  ...
