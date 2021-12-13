@@ -1,16 +1,31 @@
 import sys
-sys.path.insert(0, "..")
 import time
-
-
 from opcua import ua, Server
+import argparse
+sys.path.insert(0, "..")
+
+
+def get_args():
+
+    parser = argparse.ArgumentParser(
+        description="ip and port selection...")
+    parser.add_argument(
+        '-ip', '--ip',
+        help="indicate ip address", default='localhost', type=str)
+    parser.add_argument(
+        '-p', '--port',
+        help="indicate port", default='4840', type=str)
+    args = parser.parse_args()
+    return vars(args)
 
 
 if __name__ == "__main__":
 
+    kwargs = get_args()
+
     # setup our server
     server = Server()
-    server.set_endpoint("opc.tcp://0.0.0.0:4840/freeopcua/server/")
+    server.set_endpoint(f"opc.tcp://{kwargs['ip']}:{kwargs['port']}/freeopcua/server/")
 
     # setup our own namespace, not really necessary but should as spec
     uri = "http://examples.freeopcua.github.io"
@@ -26,7 +41,7 @@ if __name__ == "__main__":
 
     # starting!
     server.start()
-    
+
     try:
         count = 0
         while True:

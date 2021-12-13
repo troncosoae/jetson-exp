@@ -1,13 +1,28 @@
 import sys
+from opcua import Client
+import argparse
 sys.path.insert(0, "..")
 
 
-from opcua import Client
+def get_args():
+
+    parser = argparse.ArgumentParser(
+        description="ip and port selection...")
+    parser.add_argument(
+        '-ip', '--ip',
+        help="indicate ip address", default='localhost', type=str)
+    parser.add_argument(
+        '-p', '--port',
+        help="indicate port", default='4840', type=str)
+    args = parser.parse_args()
+    return vars(args)
 
 
 if __name__ == "__main__":
 
-    client = Client("opc.tcp://localhost:4840/freeopcua/server/")
+    kwargs = get_args()
+
+    client = Client(f"opc.tcp://{kwargs['ip']}:{kwargs['port']}/freeopcua/server/")
     # client = Client("opc.tcp://admin@localhost:4840/freeopcua/server/") #connect using a user
     try:
         client.connect()
@@ -20,13 +35,13 @@ if __name__ == "__main__":
         print("Children of root are: ", root.get_children())
 
         # get a specific node knowing its node id
-        #var = client.get_node(ua.NodeId(1002, 2))
-        #var = client.get_node("ns=3;i=2002")
-        #print(var)
-        #var.get_data_value() # get value of node as a DataValue object
-        #var.get_value() # get value of node as a python builtin
-        #var.set_value(ua.Variant([23], ua.VariantType.Int64)) #set node value using explicit data type
-        #var.set_value(3.9) # set node value using implicit data type
+        # var = client.get_node(ua.NodeId(1002, 2))
+        # var = client.get_node("ns=3;i=2002")
+        # print(var)
+        # var.get_data_value() # get value of node as a DataValue object
+        # var.get_value() # get value of node as a python builtin
+        # var.set_value(ua.Variant([23], ua.VariantType.Int64)) #set node value using explicit data type
+        # var.set_value(3.9) # set node value using implicit data type
 
         # Now getting a variable node using its browse path
         myvar = root.get_child(["0:Objects", "2:MyObject", "2:MyVariable"])
